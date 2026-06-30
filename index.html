@@ -1338,14 +1338,7 @@
       }
 
       const watermarkLayer = document.querySelector(".watermark-layer");
-      const rowCount = 14;
-      const wordsPerRow = 7;
-      const rows = Array.from({ length: rowCount }, (_, index) => {
-        const top = 8 + index * 7.6;
-        const wordRow = Array.from({ length: wordsPerRow }, () => "<span>НЕ ОПЛАЧЕНО</span>").join("");
-        return `<div class="watermark-row" style="top:${top}vh">${wordRow}</div>`;
-      }).join("");
-      watermarkLayer.innerHTML = rows;
+      watermarkLayer?.remove();
 
       const revealTargets = document.querySelectorAll(".reveal");
       if ("IntersectionObserver" in window) {
