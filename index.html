@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#fbfaf7" />
+    <title>Виктор и Алёна · Свадебное приглашение</title>
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --bg-soft: #f4f1eb;
+        --text: #111111;
+        --muted: rgba(17, 17, 17, 0.66);
+        --line: rgba(17, 17, 17, 0.12);
+        --accent: #2d233f;
+        --accent-soft: rgba(78, 63, 120, 0.12);
+        --paper: rgba(255, 255, 255, 0.82);
+        --shadow: 0 18px 50px rgba(17, 17, 17, 0.12);
+        --radius: 28px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 20% 10%, rgba(55, 47, 94, 0.06), transparent 32%),
+          radial-gradient(circle at 85% 22%, rgba(55, 47, 94, 0.045), transparent 28%),
+          linear-gradient(180deg, var(--bg) 0%, #ffffff 56%, var(--bg-soft) 100%);
+        font-family:
+          "Iowan Old Style",
+          "Palatino Linotype",
+          "Book Antiqua",
+          "Times New Roman",
+          serif;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, transparent 0 24%, rgba(21, 17, 36, 0.035) 24.2%, transparent 24.4%),
+          linear-gradient(180deg, transparent 0 18%, rgba(70, 59, 128, 0.07) 18.2%, transparent 18.4%),
+          linear-gradient(180deg, transparent 0 47%, rgba(70, 59, 128, 0.05) 47.2%, transparent 47.4%),
+          linear-gradient(180deg, transparent 0 76%, rgba(70, 59, 128, 0.05) 76.2%, transparent 76.4%);
+        opacity: 0.75;
+        mix-blend-mode: multiply;
+      }
+
+      .ambient {
+        position: fixed;
+        inset: auto;
+        border-radius: 999px;
+        filter: blur(56px);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .ambient.a {
+        width: 220px;
+        height: 220px;
+        left: -80px;
+        top: 10vh;
+        background: rgba(117, 104, 166, 0.18);
+      }
+
+      .ambient.b {
+        width: 260px;
+        height: 260px;
+        right: -120px;
+        top: 42vh;
+        background: rgba(51, 42, 73, 0.13);
+      }
+
+      .watermark-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0.18;
+        mix-blend-mode: multiply;
+      }
+
+      .watermark-row {
+        position: absolute;
+        left: -8vw;
+        right: -8vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        white-space: nowrap;
+        transform: rotate(-0.7deg);
+        color: rgba(96, 84, 163, 0.22);
+        font:
+          700 clamp(1.1rem, 2.6vw, 1.45rem) / 1
+          "Arial Narrow",
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        user-select: none;
+      }
+
+      .watermark-row span {
+        flex: 0 0 auto;
+        display: inline-block;
+      }
+
+      .rail {
+        position: fixed;
+        top: 112px;
+        bottom: 0;
+        left: clamp(18px, 7vw, 84px);
+        width: 1px;
+        background: linear-gradient(180deg, transparent, rgba(17, 17, 17, 0.55) 10%, rgba(17, 17, 17, 0.2) 88%, transparent);
+        opacity: 0.38;
+        pointer-events: none;
+      }
+
+      .topbar {
+        position: fixed;
+        top: max(10px, env(safe-area-inset-top));
+        left: 0;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 clamp(12px, 3.8vw, 24px);
+      }
+
+      .icon-button,
+      .pill {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        font: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          background 180ms ease,
+          color 180ms ease;
+        box-shadow: 0 10px 26px rgba(16, 14, 24, 0.14);
+      }
+
+      .icon-button {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--text);
+        backdrop-filter: blur(12px);
+      }
+
+      .pill {
+        min-height: 42px;
+        padding: 0 18px;
+        background: rgba(255, 255, 255, 0.88);
+        color: var(--text);
+        backdrop-filter: blur(12px);
+      }
+
+      .pill.back {
+        gap: 0.35rem;
+        background: rgba(215, 79, 69, 0.94);
+        color: #fff;
+      }
+
+      .pill.calendar {
+        background: rgba(37, 31, 41, 0.96);
+        color: #f7f5ef;
+        font-size: 0.98rem;
+        letter-spacing: 0.01em;
+      }
+
+      .icon-button:hover,
+      .pill:hover {
+        transform: translateY(-1px);
+      }
+
+      .page-shell {
+        position: relative;
+        width: min(100%, 430px);
+        margin: 0 auto;
+        padding: 88px 16px 56px;
+      }
+
+      .page-shell::before {
+        content: "";
+        position: fixed;
+        left: calc(50% - min(100%, 430px) / 2 + 4.1rem);
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(17, 17, 17, 0.18);
+        pointer-events: none;
+        opacity: 0.55;
+      }
+
+      .section {
+        position: relative;
+        padding: 1.25rem 0 2.75rem;
+      }
+
+      .section + .section {
+        margin-top: 0.9rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px) scale(0.99);
+        transition:
+          opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .hero {
+        min-height: calc(100svh - 112px);
+        display: grid;
+        align-content: start;
+        gap: 1.1rem;
+        padding-top: 0.4rem;
+      }
+
+      .hero-copy {
+        width: 100%;
+        padding-left: clamp(0.4rem, 2vw, 1.2rem);
+        text-align: left;
+      }
+
+      .date-stack {
+        position: absolute;
+        top: 26px;
+        left: 2px;
+        z-index: 1;
+        display: grid;
+        gap: 0.05rem;
+        width: 52px;
+        text-align: center;
+        color: var(--text);
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 0.92;
+        letter-spacing: 0.04em;
+      }
+
+      .date-stack span:last-child {
+        padding-top: 0.08rem;
+      }
+
+      .hero-media {
+        width: min(70vw, 190px);
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+        overflow: hidden;
+        background: #e5e0d9;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-media img,
+      .portrait-media img,
+      .portrait-tall img,
+      .memory-card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        filter: grayscale(1) contrast(1.08) brightness(0.98);
+      }
+
+      .names {
+        margin: 0;
+        color: var(--text);
+        font-size: clamp(2.9rem, 11.8vw, 4.8rem);
+        line-height: 0.94;
+        letter-spacing: 0.03em;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      .names .script {
+        display: block;
+        margin: 0.2rem 0 0.26rem;
+        color: rgba(17, 17, 17, 0.85);
+        font:
+          400 clamp(1.5rem, 5vw, 2.05rem) / 1
+          "Snell Roundhand",
+          "Apple Chancery",
+          "Segoe Script",
+          cursive;
+        letter-spacing: 0;
+        transform: translateX(-0.25rem);
+      }
+
+      .invite-line {
+        margin: 0.9rem 0 0;
+        max-width: 24rem;
+        color: rgba(17, 17, 17, 0.74);
+        text-align: center;
+        font-size: 0.82rem;
+        line-height: 1.4;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hero-details {
+        margin-top: 0.35rem;
+        padding: 1rem 1rem 1.1rem;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        text-align: center;
+      }
+
+      .hero-details strong {
+        display: block;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .hero-details .venue {
+        margin: 0.45rem 0 0;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .hero-details .signature {
+        margin: 0.55rem 0 0;
+        font:
+          400 1.35rem / 1.1
+          "Snell Roundhand",
+          "Apple Chancery",
+          "Segoe Script",
+          cursive;
+        letter-spacing: 0;
+        color: rgba(17, 17, 17, 0.94);
+      }
+
+      .scroll-hint {
+        position: absolute;
+        right: 0;
+        bottom: 6.3rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 8px 22px rgba(17, 17, 17, 0.1);
+        font-size: 1.35rem;
+      }
+
+      .countdown {
+        margin-top: auto;
+        padding: 1rem 0 0;
+      }
+
+      .countdown-shell {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.35rem;
+        align-items: end;
+        text-align: center;
+      }
+
+      .countdown-item {
+        padding-top: 0.15rem;
+      }
+
+      .countdown-value {
+        display: block;
+        font-size: clamp(1.25rem, 5vw, 1.7rem);
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      .countdown-label {
+        display: block;
+        margin-top: 0.22rem;
+        color: var(--muted);
+        font-size: 0.63rem;
+        text-transform: lowercase;
+      }
+
+      .section-title {
+        margin: 0;
+        color: var(--text);
+        text-align: center;
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.02;
+        font-weight: 700;
+      }
+
+      .section-text {
+        margin: 1rem auto 0;
+        max-width: 21rem;
+        color: rgba(17, 17, 17, 0.82);
+        text-align: center;
+        font-size: 1.03rem;
+        line-height: 1.62;
+      }
+
+      .details-date {
+        margin: 1.5rem 0 0;
+        text-align: center;
+        font-size: 1.55rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+      }
+
+      .details-date strong {
+        font-weight: 700;
+      }
+
+      .portrait-media {
+        width: min(100%, 260px);
+        aspect-ratio: 0.84 / 1;
+        margin: 1.25rem auto 0;
+        overflow: hidden;
+        background: #e5e0d9;
+        box-shadow: var(--shadow);
+      }
+
+      .caption-script {
+        margin: 1rem auto 0;
+        max-width: 18rem;
+        color: rgba(17, 17, 17, 0.92);
+        text-align: center;
+        font:
+          400 clamp(1.45rem, 4.9vw, 2rem) / 1.25
+          "Snell Roundhand",
+          "Apple Chancery",
+          "Segoe Script",
+          cursive;
+        letter-spacing: 0;
+      }
+
+      .memory-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+        align-items: start;
+      }
+
+      .memory-card {
+        margin: 0;
+        padding: 0;
+      }
+
+      .memory-card .frame {
+        width: 100%;
+        aspect-ratio: 0.77 / 1;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: #e5e0d9;
+      }
+
+      .memory-card figcaption {
+        margin-top: 0.55rem;
+        text-align: center;
+        font-size: 0.82rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .footer-note {
+        margin-top: 1.1rem;
+        padding: 1.1rem 0 0;
+        border-top: 1px solid var(--line);
+        text-align: center;
+      }
+
+      .footer-note .meta {
+        color: rgba(17, 17, 17, 0.7);
+        font-size: 0.86rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .footer-note .countdown-shell {
+        margin-top: 0.8rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+        padding: 0.6rem 0.95rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.84);
+        color: rgba(17, 17, 17, 0.72);
+        box-shadow: 0 10px 26px rgba(17, 17, 17, 0.08);
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+      }
+
+      .plain-section {
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+      }
+
+      .plain-stack {
+        display: grid;
+        gap: 1.3rem;
+      }
+
+      .plain-title {
+        margin: 0;
+        color: var(--text);
+        text-align: center;
+        font-size: clamp(1.95rem, 7.4vw, 2.8rem);
+        line-height: 1.06;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .plain-text {
+        margin: 0.8rem auto 0;
+        max-width: 22rem;
+        color: rgba(17, 17, 17, 0.82);
+        text-align: center;
+        font-size: 1.03rem;
+        line-height: 1.7;
+      }
+
+      .plain-text + .plain-text {
+        margin-top: 0.65rem;
+      }
+
+      .rsvp-section {
+        padding-top: 1.2rem;
+        padding-bottom: 2rem;
+      }
+
+      .rsvp-stack {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .rsvp-banner {
+        margin: 0;
+        padding: 0.95rem 1rem 1rem 1.15rem;
+        border-left: 6px solid #f05e2a;
+        background: #dfecf6;
+        color: rgba(17, 17, 17, 0.94);
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .rsvp-form {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .name-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .field-label {
+        font-size: 0.9rem;
+        color: rgba(17, 17, 17, 0.68);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .text-input {
+        width: 100%;
+        min-height: 52px;
+        padding: 0.9rem 1rem;
+        border-radius: 18px;
+        border: 1px solid rgba(17, 17, 17, 0.14);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--text);
+        font: inherit;
+      }
+
+      .text-input::placeholder {
+        color: rgba(17, 17, 17, 0.42);
+      }
+
+      .confirm-block {
+        padding-top: 0.3rem;
+      }
+
+      .confirm-title {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(2rem, 8vw, 2.7rem);
+        line-height: 1.05;
+        font-weight: 700;
+      }
+
+      .confirm-script {
+        margin: 0.6rem 0 0;
+        text-align: center;
+        color: rgba(17, 17, 17, 0.9);
+        font:
+          400 clamp(2rem, 7.5vw, 3rem) / 1
+          "Snell Roundhand",
+          "Apple Chancery",
+          "Segoe Script",
+          cursive;
+      }
+
+      .deadline-note {
+        margin: 0.55rem auto 0;
+        max-width: 18rem;
+        text-align: center;
+        font-size: 0.98rem;
+        line-height: 1.5;
+        color: rgba(17, 17, 17, 0.8);
+      }
+
+      .palette-card {
+        margin: 1.2rem auto 0;
+        width: min(100%, 292px);
+        padding: 1rem 0.95rem 1.2rem;
+        background: #ececec;
+        text-align: center;
+      }
+
+      .confirm-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: min(100%, 320px);
+        min-height: 58px;
+        margin: 0.6rem auto 0;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #464646 0%, #1f1f1f 100%);
+        color: #f6f3ef;
+        font: inherit;
+        font-size: 1.18rem;
+        box-shadow: 0 14px 28px rgba(17, 17, 17, 0.18);
+      }
+
+      .question-block {
+        padding-top: 0.9rem;
+      }
+
+      .question-banner {
+        margin: 0 0 1.25rem;
+        padding: 1rem 0.9rem 1rem 1.1rem;
+        border-left: 6px solid #f05e2a;
+        background: #dfecf6;
+        color: rgba(17, 17, 17, 0.94);
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .question-title {
+        margin: 0 0 0.85rem;
+        font-size: clamp(1.55rem, 6vw, 2rem);
+        line-height: 1.15;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      .submit-row {
+        display: grid;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .submit-note {
+        text-align: center;
+        color: rgba(17, 17, 17, 0.6);
+        font-size: 0.84rem;
+      }
+
+      .modules-section {
+        padding-top: 0.25rem;
+      }
+
+      .module-panel {
+        border-radius: 30px;
+        padding: 1rem 0.95rem 1.1rem;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        box-shadow: 0 22px 50px rgba(17, 17, 17, 0.08);
+      }
+
+      .prompt-banner {
+        margin: 0 0 1.1rem;
+        padding: 1rem 0.9rem 1rem 1.1rem;
+        border-left: 6px solid #f05e2a;
+        background: #dfecf6;
+        color: rgba(17, 17, 17, 0.94);
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .module-card {
+        padding: 1rem 0 0;
+      }
+
+      .module-card + .module-card {
+        margin-top: 1.2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(17, 17, 17, 0.08);
+      }
+
+      .module-title {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(2rem, 8vw, 2.55rem);
+        line-height: 1.05;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .module-script {
+        margin: 0.6rem 0 0;
+        text-align: center;
+        color: rgba(17, 17, 17, 0.88);
+        font:
+          400 clamp(2rem, 7vw, 3rem) / 1
+          "Snell Roundhand",
+          "Apple Chancery",
+          "Segoe Script",
+          cursive;
+      }
+
+      .deadline-note {
+        margin: 0.65rem auto 0;
+        max-width: 18rem;
+        text-align: center;
+        font-size: 0.98rem;
+        line-height: 1.5;
+        color: rgba(17, 17, 17, 0.8);
+      }
+
+      .palette-card {
+        margin: 1.25rem auto 1rem;
+        width: min(100%, 292px);
+        padding: 1rem 0.95rem 1.2rem;
+        background: #ececec;
+        text-align: center;
+      }
+
+      .palette-text {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(17, 17, 17, 0.88);
+      }
+
+      .swatches {
+        display: flex;
+        justify-content: center;
+        gap: 0.4rem;
+        margin-top: 1.05rem;
+      }
+
+      .swatch {
+        width: 76px;
+        height: 34px;
+        border-radius: 999px;
+        transform: rotate(-12deg);
+        box-shadow: 0 12px 18px rgba(17, 17, 17, 0.18);
+      }
+
+      .swatch.brown {
+        background: linear-gradient(180deg, #6f2d0f, #4c1f0d);
+      }
+
+      .swatch.burgundy {
+        background: linear-gradient(180deg, #9c1338, #6d0623);
+      }
+
+      .swatch.black {
+        background: linear-gradient(180deg, #161616, #050505);
+      }
+
+      .confirm-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: min(100%, 320px);
+        min-height: 58px;
+        margin: 0.45rem auto 0;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #464646 0%, #1f1f1f 100%);
+        color: #f6f3ef;
+        font: inherit;
+        font-size: 1.18rem;
+        box-shadow: 0 14px 28px rgba(17, 17, 17, 0.18);
+      }
+
+      .form-label {
+        display: block;
+        margin: 1rem 0 0.45rem;
+        color: rgba(17, 17, 17, 0.72);
+        font-size: 1.03rem;
+        font-style: italic;
+      }
+
+      .message-box {
+        width: 100%;
+        min-height: 108px;
+        padding: 0.95rem 1rem;
+        border-radius: 22px;
+        border: 1px solid rgba(17, 17, 17, 0.12);
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text);
+        font: inherit;
+        resize: vertical;
+      }
+
+      .gift-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-top: 0.85rem;
+        color: rgba(17, 17, 17, 0.78);
+        font-size: 0.96rem;
+      }
+
+      .gift-row input {
+        width: 1.05rem;
+        height: 1.05rem;
+        accent-color: #2c2c2c;
+      }
+
+      .question-card + .question-card {
+        margin-top: 1.8rem;
+      }
+
+      .question-title {
+        margin: 0 0 0.85rem;
+        font-size: clamp(1.55rem, 6vw, 2rem);
+        line-height: 1.15;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      .options {
+        display: grid;
+        gap: 0.68rem;
+      }
+
+      .option {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: rgba(17, 17, 17, 0.9);
+        font-size: 1.06rem;
+        line-height: 1.3;
+      }
+
+      .option input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 1.35rem;
+        height: 1.35rem;
+        margin: 0;
+        border-radius: 999px;
+        border: 3px solid #111111;
+        background: transparent;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .option input:checked::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border-radius: 999px;
+        background: #111111;
+      }
+
+      .info-card {
+        text-align: center;
+      }
+
+      .info-card .module-title {
+        margin-top: 0.15rem;
+      }
+
+      .info-text {
+        margin: 0.85rem auto 1.15rem;
+        max-width: 24rem;
+        color: rgba(17, 17, 17, 0.82);
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+
+      @media (min-width: 560px) {
+        .page-shell {
+          padding-top: 96px;
+        }
+
+        .hero {
+          min-height: calc(100svh - 120px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .reveal,
+        .icon-button,
+        .pill,
+        .scroll-hint {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient a" aria-hidden="true"></div>
+    <div class="ambient b" aria-hidden="true"></div>
+    <div class="watermark-layer" aria-hidden="true"></div>
+
+    <header class="topbar" aria-label="Навигация">
+      <button class="icon-button" type="button" aria-label="Меню">☰</button>
+      <a class="pill back" href="#hero">‹ Назад</a>
+      <button class="pill calendar" type="button" data-calendar>Добавить в календарь</button>
+    </header>
+
+    <main class="page-shell">
+      <section class="section hero reveal" id="hero">
+        <div class="date-stack" aria-label="Дата свадьбы">
+          <span>21</span>
+          <span>08</span>
+          <span>26</span>
+        </div>
+
+        <figure class="hero-media" aria-label="Фотография пары">
+          <img src="assets/couple-birthday.jpg" alt="Виктор и Алёна на празднике" />
+        </figure>
+
+        <div class="hero-copy">
+          <h1 class="names">
+            ВИКТОР
+            <span class="script">and</span>
+            АЛЁНА
+          </h1>
+          <p class="invite-line">ПРИГЛАШАЕМ ВАС РАЗДЕЛИТЬ С НАМИ РАДОСТЬ ГЛАВНОГО СОБЫТИЯ В НАШЕЙ ЖИЗНИ</p>
+        </div>
+
+        <div class="hero-details">
+          <strong id="event-date-label">ПЯТНИЦА, 21 АВГУСТА 2026</strong>
+          <p class="venue">
+            РЕСТОРАН "МЕЛОДИЯ НА НАБЕРЕЖНОЙ"<br />
+            УЛ. ПЛОЩАДЬ РЕЧНИКОВ 5А
+          </p>
+          <p class="signature">Ждем Вас на нашей свадьбе</p>
+        </div>
+
+        <a class="scroll-hint" href="#message" aria-label="Прокрутить вниз">↓</a>
+
+        <div class="countdown" aria-label="Обратный отсчет до свадьбы">
+          <div class="countdown-shell" data-countdown></div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="message">
+        <h2 class="section-title">Дорогой<br />Гость!</h2>
+        <p class="section-text">
+          Мы рады сообщить Вам, что 21.08.2026 состоится самое главное торжество в нашей жизни - день нашей
+          свадьбы! Приглашаем Вас разделить с нами радость этого незабываемого дня.
+        </p>
+        <div class="details-date"><strong>21.08.2026</strong> в 15:00</div>
+      </section>
+
+      <section class="section reveal" aria-label="Фотография пары">
+        <figure class="portrait-media">
+          <img src="assets/couple-columns.jpg" alt="Виктор и Алёна в колоннаде" />
+        </figure>
+        <p class="caption-script">Там, где поселилась любовь,<br />растет радость.</p>
+      </section>
+
+      <section class="section reveal" aria-label="Детские фотографии">
+        <div class="memory-grid">
+          <figure class="memory-card">
+            <div class="frame">
+              <img src="assets/child-girl.jpg" alt="Детское фото Алёны" />
+            </div>
+            <figcaption>Алёна</figcaption>
+          </figure>
+          <figure class="memory-card">
+            <div class="frame">
+              <img src="assets/child-boy.jpg" alt="Детское фото Виктора" />
+            </div>
+            <figcaption>Виктор</figcaption>
+          </figure>
+        </div>
+        <div class="footer-note">
+          <div class="meta">До нашей встречи осталось</div>
+          <div class="countdown-shell" data-countdown compact></div>
+          <div class="badge">Свадебное приглашение</div>
+        </div>
+      </section>
+
+      <section class="section reveal plain-section" id="menu" aria-label="Информация для гостей">
+        <div class="plain-stack">
+          <div>
+            <h2 class="plain-title">МЕНЮ</h2>
+            <p class="plain-text">
+              Меню разнообразно, поэтому сообщите нам заранее, если у вас есть какие-либо предпочтения или
+              диетические ограничения.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="plain-title">ПОЖЕЛАНИЯ ПО ПОДАРКАМ</h2>
+            <p class="plain-text">
+              Ваше присутствие в день нашей свадьбы - самый значимый подарок для нас!
+            </p>
+            <p class="plain-text">
+              Мы понимаем, что дарить цветы на свадьбу - это традиция, но мы не сможем насладиться их красотой в
+              полной мере... Будем рады любой другой альтернативе (вино или в денежном эквиваленте).
+            </p>
+          </div>
+
+          <div>
+            <h2 class="plain-title">ПРИМЕЧАНИЕ</h2>
+            <p class="plain-text">
+              Ваше спокойствие — наше спокойствие. Пожалуйста, подумайте заранее, с кем оставите своих детей. Мы
+              очень хотим, чтобы вы насладились этим днем также, как и мы.
+            </p>
+            <p class="plain-text">
+              Будем благодарны, если вы воздержитесь от криков "Горько" на празднике, ведь поцелуй — это знак
+              выражения чувств, он не может быть по заказу.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal rsvp-section" id="rsvp" aria-label="Анкета гостя и подтверждение">
+        <div class="rsvp-stack">
+          <div class="rsvp-banner">Пожалуйста, ответьте на вопросы, которые для вас подготовили Виктор и Алёна:</div>
+
+          <form class="rsvp-form" id="rsvp-form">
+            <div class="name-grid" aria-label="Имя и фамилия гостя">
+              <label class="field">
+                <span class="field-label">Имя</span>
+                <input class="text-input" type="text" name="firstName" autocomplete="given-name" placeholder="Имя" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Фамилия</span>
+                <input class="text-input" type="text" name="lastName" autocomplete="family-name" placeholder="Фамилия" required />
+              </label>
+            </div>
+
+            <div class="confirm-block">
+              <h2 class="confirm-title">ПОДТВЕРЖДЕНИЕ</h2>
+              <p class="deadline-note">Пожалуйста подтвердите свое присутствие до 01.08.2026</p>
+              <p class="confirm-script">Ждем Вас!</p>
+
+              <div class="palette-card" aria-label="Палитра дресс-кода">
+                <p class="palette-text">
+                  Будем благодарны, если при выборе нарядов на наше торжество вы придержитесь следующей палитры
+                  (темно коричневый/бордовый/черный)
+                </p>
+                <div class="swatches" aria-hidden="true">
+                  <span class="swatch brown"></span>
+                  <span class="swatch burgundy"></span>
+                  <span class="swatch black"></span>
+                </div>
+              </div>
+
+              <button class="confirm-action" type="button" data-jump-to-questions>✓ Подтвердить</button>
+            </div>
+
+            <div class="question-block">
+              <h2 class="plain-title">АНКЕТА ГОСТЯ</h2>
+
+              <div class="question-card">
+                <h3 class="question-title">Потребуется ли вам трансфер?</h3>
+                <div class="options" role="radiogroup" aria-label="Трансфер">
+                  <label class="option"><input type="radio" name="transfer" value="Нет" /><span>Нет</span></label>
+                  <label class="option"><input type="radio" name="transfer" value="Только до торжества" /><span>Только до торжества</span></label>
+                  <label class="option"><input type="radio" name="transfer" value="Только после торжества" /><span>Только после торжества</span></label>
+                  <label class="option"><input type="radio" name="transfer" value="До и после торжества" /><span>До и после торжества</span></label>
+                </div>
+              </div>
+
+              <div class="question-card">
+                <h3 class="question-title">Есть ли у вас особые предпочтения по еде</h3>
+                <div class="options" role="radiogroup" aria-label="Пищевые предпочтения">
+                  <label class="option"><input type="radio" name="food" value="нет" /><span>нет</span></label>
+                  <label class="option"><input type="radio" name="food" value="не ем мясо" /><span>не ем мясо</span></label>
+                  <label class="option"><input type="radio" name="food" value="не ем рыбу" /><span>не ем рыбу</span></label>
+                  <label class="option"><input type="radio" name="food" value="вегетарианец" /><span>вегетарианец</span></label>
+                </div>
+              </div>
+
+              <div class="question-card">
+                <h3 class="question-title">Какой алкоголь вы предпочитаете?</h3>
+                <div class="options" role="radiogroup" aria-label="Предпочтения по алкоголю">
+                  <label class="option"><input type="radio" name="alcohol" value="Красное вино" /><span>Красное вино</span></label>
+                  <label class="option"><input type="radio" name="alcohol" value="Белое вино" /><span>Белое вино</span></label>
+                  <label class="option"><input type="radio" name="alcohol" value="Шампанское" /><span>Шампанское</span></label>
+                  <label class="option"><input type="radio" name="alcohol" value="Виски/коньяк" /><span>Виски/коньяк</span></label>
+                  <label class="option"><input type="radio" name="alcohol" value="Водка" /><span>Водка</span></label>
+                  <label class="option"><input type="radio" name="alcohol" value="Не буду пить алкоголь" /><span>Не буду пить алкоголь</span></label>
+                </div>
+              </div>
+
+            <div class="submit-row">
+                <button class="confirm-action" type="submit">✓ Подтвердить</button>
+                <div class="submit-note" data-submit-status>Ответы будут сохранены на этом устройстве.</div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const wedding = {
+        title: "Свадьба Виктора и Алёны",
+        start: new Date("2026-08-21T15:00:00+03:00"),
+        end: new Date("2026-08-21T21:00:00+03:00"),
+        location: 'Ресторан "Мелодия на набережной", ул. Площадь Речников 5А',
+        details:
+          "Приглашаем Вас разделить с нами радость главного события в нашей жизни.",
+        timezone: "Europe/Moscow",
+      };
+
+      const formatDateLabel = (date) =>
+        new Intl.DateTimeFormat("ru-RU", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+          .format(date)
+          .replace(/^./, (letter) => letter.toUpperCase());
+
+      const countdownTargets = document.querySelectorAll("[data-countdown]");
+      const eventDateLabel = document.getElementById("event-date-label");
+      eventDateLabel.textContent = formatDateLabel(wedding.start)
+        .toUpperCase()
+        .replace(/[\s\u00A0\u202F]*Г\.$/, "");
+
+      const createCountdownMarkup = () =>
+        ["недель", "дней", "часов", "минут", "секунд"]
+          .map(
+            (label) => `
+              <div class="countdown-item">
+                <span class="countdown-value" data-unit="${label}">00</span>
+                <span class="countdown-label">${label}</span>
+              </div>
+            `,
+          )
+          .join("");
+
+      countdownTargets.forEach((node) => {
+        node.innerHTML = createCountdownMarkup();
+      });
+
+      const pad2 = (value) => String(value).padStart(2, "0");
+
+      const updateCountdown = () => {
+        const now = new Date();
+        let diff = Math.max(0, wedding.start - now);
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const week = day * 7;
+
+        const values = {
+          "недель": Math.floor(diff / week),
+          "дней": Math.floor((diff % week) / day),
+          "часов": Math.floor((diff % day) / hour),
+          "минут": Math.floor((diff % hour) / minute),
+          "секунд": Math.floor((diff % minute) / second),
+        };
+
+        document.querySelectorAll(".countdown-value").forEach((el) => {
+          const unit = el.dataset.unit;
+          el.textContent = pad2(values[unit]);
+        });
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      const buildGoogleCalendarUrl = () => {
+        const toCalendarStamp = (date) => date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+        const start = toCalendarStamp(wedding.start);
+        const end = toCalendarStamp(wedding.end);
+        const params = new URLSearchParams({
+          action: "TEMPLATE",
+          text: wedding.title,
+          dates: `${start}/${end}`,
+          details: wedding.details,
+          location: wedding.location,
+          ctz: wedding.timezone,
+        });
+        return `https://calendar.google.com/calendar/render?${params.toString()}`;
+      };
+
+      const isApplePlatform = () => {
+        const ua = navigator.userAgent || "";
+        const platform = navigator.platform || "";
+        return /iPad|iPhone|iPod/.test(ua) || /Mac/.test(platform);
+      };
+
+      const appleCalendarUrl = () => "invite.ics";
+
+      const openCalendarTarget = () => {
+        const isApple = isApplePlatform();
+        const url = isApple ? appleCalendarUrl() : buildGoogleCalendarUrl();
+        const opened = window.open(url, "_blank", "noopener,noreferrer");
+        if (!opened) {
+          window.location.href = url;
+        }
+      };
+
+      document.querySelectorAll("[data-calendar]").forEach((button) => {
+        button.addEventListener("click", () => {
+          openCalendarTarget();
+        });
+      });
+
+      const jumpButton = document.querySelector("[data-jump-to-questions]");
+      const questionBlock = document.querySelector(".question-block");
+      if (jumpButton && questionBlock) {
+        jumpButton.addEventListener("click", () => {
+          questionBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      const rsvpForm = document.getElementById("rsvp-form");
+      const submitStatus = document.querySelector("[data-submit-status]");
+      const normalizeValue = (value) => value.trim();
+      const getRadioValue = (name) =>
+        rsvpForm.querySelector(`input[name="${name}"]:checked`)?.value || "";
+      const submissionStorageKey = "rsvpSubmissions";
+
+      const setSubmitStatus = (message, kind = "idle") => {
+        if (!submitStatus) return;
+        submitStatus.textContent = message;
+        submitStatus.dataset.state = kind;
+      };
+
+      const saveSubmission = (payload) => {
+        const existing = JSON.parse(localStorage.getItem(submissionStorageKey) || "[]");
+        existing.push(payload);
+        localStorage.setItem(submissionStorageKey, JSON.stringify(existing));
+      };
+
+      if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const formData = new FormData(rsvpForm);
+          const payload = {
+            guestName: normalizeValue(String(formData.get("firstName") || "")),
+            guestSurname: normalizeValue(String(formData.get("lastName") || "")),
+            transfer: getRadioValue("transfer"),
+            food: getRadioValue("food"),
+            alcohol: getRadioValue("alcohol"),
+            eventTitle: wedding.title,
+            eventDate: wedding.start.toISOString(),
+            submittedAt: new Date().toISOString(),
+            source: window.location.href,
+          };
+
+          if (!payload.guestName || !payload.guestSurname) {
+            setSubmitStatus("Введите имя и фамилию гостя.", "error");
+            return;
+          }
+
+          const submitButton = rsvpForm.querySelector('button[type="submit"]');
+          submitButton?.setAttribute("disabled", "disabled");
+          setSubmitStatus("Сохраняю ответы...", "pending");
+
+          try {
+            saveSubmission(payload);
+            setSubmitStatus("Готово. Ответ сохранен на этом устройстве.", "success");
+            rsvpForm.reset();
+          } catch (error) {
+            setSubmitStatus("Не удалось сохранить ответ в браузере.", "error");
+          } finally {
+            submitButton?.removeAttribute("disabled");
+          }
+        });
+      }
+
+      const watermarkLayer = document.querySelector(".watermark-layer");
+      const rowCount = 14;
+      const wordsPerRow = 7;
+      const rows = Array.from({ length: rowCount }, (_, index) => {
+        const top = 8 + index * 7.6;
+        const wordRow = Array.from({ length: wordsPerRow }, () => "<span>НЕ ОПЛАЧЕНО</span>").join("");
+        return `<div class="watermark-row" style="top:${top}vh">${wordRow}</div>`;
+      }).join("");
+      watermarkLayer.innerHTML = rows;
+
+      const revealTargets = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
+        );
+        revealTargets.forEach((target) => observer.observe(target));
+      } else {
+        revealTargets.forEach((target) => target.classList.add("is-visible"));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Codex//Wedding Invitation//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Europe/Moscow
+BEGIN:VEVENT
+UID:vitya-alena-wedding-20260821@codex.local
+DTSTAMP:20260624T120000Z
+DTSTART;TZID=Europe/Moscow:20260821T150000
+DTEND;TZID=Europe/Moscow:20260821T210000
+SUMMARY:Свадьба Виктора и Алёны
+DESCRIPTION:Приглашаем Вас разделить с нами радость главного события в нашей жизни.
+LOCATION:Ресторан "Мелодия на набережной", ул. Площадь Речников 5А
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR
